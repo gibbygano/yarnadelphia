@@ -1,7 +1,7 @@
 export default () => {
     return (
-        <header class="border-gray-200 dark:border-gray-700 sticky h-36 top-0 z-[1] bg-gradient-to-r from-blue-400 via-pink-200 to-red-400">
-            <div class="max-w-screen grid-cols-5 h-36 flex p-4 bg-[url('/knitting-yarn-and-needles.png')] bg-no-repeat bg-right bg-contain mix-blend-overlay justify-end items-end">
+        <header class="border-gray-200 dark:border-gray-700 sticky h-40 top-0 z-[1] bg-gradient-to-r from-blue-400 via-pink-200 to-red-400">
+            <div class="max-w-screen grid-cols-5 h-40 flex p-4 bg-[url('/crochet.svg')] bg-no-repeat bg-right bg-contain mix-blend-overlay justify-end items-end">
                 <a
                     href="/"
                     class="md:col-start-4 md:col-end-5 col-start-3 col-end-4"
