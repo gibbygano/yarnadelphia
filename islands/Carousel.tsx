@@ -1,69 +1,229 @@
-import { JSX } from "preact/jsx-runtime";
+import { asset } from "$fresh/runtime.ts";
+import { useSignal } from "@preact/signals";
+import { useEffect, useRef } from "preact/hooks";
+import IconCircleChevronsRight from "https://deno.land/x/tabler_icons_tsx@0.0.6/tsx/circle-chevrons-right.tsx";
+import IconCircleChevronsLeft from "https://deno.land/x/tabler_icons_tsx@0.0.6/tsx/circle-chevrons-left.tsx";
 
-export default () => {
-    const goTo = (
-        event: JSX.TargetedEvent<Element, Event>,
-    ) => {
-        event.preventDefault();
+const SLIDE_DATA = [
+    {
+        color: "bg-green-300",
+        text: "slide one",
+        url: asset("/images/IMG_3763.jpeg"),
+    },
+    {
+        color: "bg-yellow-300",
+        text: "slide two",
+        url: asset("/images/IMG_3764.jpeg"),
+    },
+    {
+        color: "bg-blue-300",
+        text: "slide three",
+        url: asset("/images/IMG_3792.jpeg"),
+    },
+    {
+        color: "bg-yellow-300",
+        text: "slide four",
+        url: asset("/images/IMG_3830.jpeg"),
+    },
+    {
+        color: "bg-red-300",
+        text: "slide four",
+        url: asset("/images/IMG_4117.jpeg"),
+    },
+    {
+        color: "bg-purple-300",
+        text: "slide four",
+        url: asset("/images/IMG_4151.jpeg"),
+    },
+    {
+        color: "bg-pink-300",
+        text: "slide four",
+        url: asset("/images/IMG_4637.jpeg"),
+    },
+    {
+        color: "bg-red-300",
+        text: "Table",
+        url: asset("/images/Table setup.jpg"),
+    },
+];
 
-        const btn = event.currentTarget;
-        const carousel = btn.parentElement!.parentElement!.parentElement!;
-
-        const href = btn.getAttribute("href")!;
-        const target = carousel.querySelector<HTMLDivElement>(href)!;
-        const left = target.offsetLeft;
-        carousel.scrollTo({ left: left });
+type SlideProps = {
+    class?: string;
+    key?: number;
+    data: {
+        color: string;
+        text: string;
+        url: string;
     };
+};
+
+const Slide = (props: SlideProps) => {
+    const { key, data } = props;
+    const { color, text, url } = data;
+    if (props.class === undefined) props.class = "";
     return (
-        <div className="carousel w-full">
-            <div id="slide1" className="carousel-item relative w-full">
-                <img
-                    src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
-                    className="w-full"
-                />
-                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                    <a
-                        href="#slide4"
-                        className="btn btn-circle"
-                        onClick={goTo}
-                    >
-                        ❮
-                    </a>
-                    <a href="#slide2" className="btn btn-circle" onClick={goTo}>
-                        ❯
-                    </a>
-                </div>
-            </div>
-            <div id="slide2" className="carousel-item relative w-full">
-                <img
-                    src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
-                    className="w-full"
-                />
-                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                    <a href="#slide1" className="btn btn-circle" onClick={goTo}>❮</a>
-                    <a href="#slide3" className="btn btn-circle" onClick={goTo}>❯</a>
-                </div>
-            </div>
-            <div id="slide3" className="carousel-item relative w-full">
-                <img
-                    src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
-                    className="w-full"
-                />
-                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                    <a href="#slide2" className="btn btn-circle" onClick={goTo}>❮</a>
-                    <a href="#slide4" className="btn btn-circle" onClick={goTo}>❯</a>
-                </div>
-            </div>
-            <div id="slide4" className="carousel-item relative w-full">
-                <img
-                    src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
-                    className="w-full"
-                />
-                <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                    <a href="#slide3" className="btn btn-circle" onClick={goTo}>❮</a>
-                    <a href="#slide1" className="btn btn-circle" onClick={goTo}>❯</a>
-                </div>
-            </div>
+        <div
+            key={key}
+            class={`${props.class} ${color} w-[400px] text-center text-black p-5`}
+        >
+            {text}
+            <img class="object-scale-down w-full" src={url} alt={text} />
         </div>
     );
 };
+
+type CarouselProps = {
+    showNavigation?: boolean;
+    interval?: number;
+    currentSlide?: number;
+    automatic?: boolean;
+    class?: string;
+};
+
+const Carousel = (props: CarouselProps) => {
+    const NAVIGATION_COLOR = `hover:text-gray-300 text-white`;
+    const CHEVRON_STYLE =
+        `absolute z-30 w-10 h-10 ${NAVIGATION_COLOR} cursor-pointer`;
+    const SHOW_NAVIGATION = props.showNavigation === false ? false : true;
+    const SLIDE_INTERVAL = props.interval ? props.interval : 3500;
+    const currentSlide = useSignal(props.currentSlide ? props.currentSlide : 0);
+    const automatic = useSignal(props.automatic === false ? false : true);
+    const slideshowRef = useRef<HTMLDivElement>(null);
+
+    const slideClasses = (idx = 0) => {
+        let outgoingSlide = currentSlide.value - 1;
+        let incomingSlide = currentSlide.value + 1;
+        if (outgoingSlide === -1) outgoingSlide = SLIDE_DATA.length - 1;
+        if (incomingSlide === SLIDE_DATA.length) incomingSlide = 0;
+        const TRANSITION_CLASS = () => {
+            if (currentSlide.value === idx) return "translate-x-0 z-20";
+            if (incomingSlide === idx) return "translate-x-full z-10";
+            if (outgoingSlide === idx) return "-translate-x-full z-10";
+            return "translate-x-full";
+        };
+        return `slide absolute top-0 left-0 transition-all ease-in-out duration-700 transform ${TRANSITION_CLASS()}`;
+    };
+
+    const nextSlide = () => {
+        if (SLIDE_DATA.length === currentSlide.value + 1) {
+            currentSlide.value = 0;
+        } else {
+            currentSlide.value++;
+        }
+    };
+
+    const previousSlide = () => {
+        if (currentSlide.value === 0) {
+            currentSlide.value = SLIDE_DATA.length - 1;
+        } else {
+            currentSlide.value--;
+        }
+    };
+
+    const chevronClick = (doCallback = () => {}) => {
+        if (automatic.value) automatic.value = false;
+        return doCallback();
+    };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (automatic.value) nextSlide();
+        }, SLIDE_INTERVAL);
+        return () => clearInterval(interval);
+    }, []);
+
+    const ArrowKeyNavigation = () => {
+        const keydownHandler = (event: KeyboardEvent) => {
+            if (automatic.value) automatic.value = false;
+            switch (event.code) {
+                case "ArrowLeft":
+                    event.preventDefault();
+                    previousSlide();
+                    break;
+                case "ArrowRight":
+                    event.preventDefault();
+                    nextSlide();
+                    break;
+                default:
+                    break;
+            }
+        };
+        slideshowRef.current?.addEventListener("keydown", keydownHandler);
+        return () =>
+            slideshowRef.current?.removeEventListener(
+                "keydown",
+                keydownHandler,
+            );
+    };
+    useEffect(ArrowKeyNavigation, []);
+
+    const goToSlide = (slide_index = 0) => {
+        if (automatic.value) automatic.value = false;
+        currentSlide.value = slide_index;
+    };
+
+    const DotsNavigation = () => (
+        <div
+            class={"slide_nav z-30 w-full absolute bottom-0 flex justify-center"}
+        >
+            {SLIDE_DATA.map((_item, idx) => {
+                return (
+                    <button
+                        class={`px-1 ${NAVIGATION_COLOR}`}
+                        onClick={() => {
+                            goToSlide(idx);
+                        }}
+                        key={idx}
+                    >
+                        <span class="sr-only">Go to slide {idx}</span>
+                        {idx === currentSlide.value
+                            ? <span class="not-sr-only">●</span>
+                            : <span class="not-sr-only">○</span>}
+                    </button>
+                );
+            })}
+        </div>
+    );
+
+    return (
+        <div
+            ref={slideshowRef}
+            class={`slideshow relative flex-1 flex-end p-0 overflow-hidden ${
+                props.class !== undefined ? props.class : ""
+            }`}
+            tabIndex={0}
+        >
+            <button
+                class={`left-0 ${CHEVRON_STYLE}`}
+                style="top: calc(50% - 20px)"
+                onClick={() => chevronClick(previousSlide)}
+            >
+                <IconCircleChevronsLeft class="w-10 h-10" aria-hidden="true" />
+                <span class="sr-only">Previous slide</span>
+            </button>
+            <button
+                class={`right-0 ${CHEVRON_STYLE}`}
+                style="top: calc(50% - 20px)"
+                onClick={() => chevronClick(nextSlide)}
+            >
+                <IconCircleChevronsRight class="w-10 h-10" aria-hidden="true" />
+                <span class="sr-only">Next slide</span>
+            </button>
+            {SLIDE_DATA.map((item, idx) => (
+                <Slide
+                    data={item}
+                    key={idx}
+                    class={slideClasses(idx)}
+                />
+            ))}
+            {SHOW_NAVIGATION &&
+                <DotsNavigation />}
+            <Slide
+                data={SLIDE_DATA[0]}
+                class="opacity-0 pointer-events-none"
+            />
+        </div>
+    );
+};
+
+export default Carousel;
