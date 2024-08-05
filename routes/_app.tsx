@@ -1,6 +1,7 @@
 import { type PageProps } from "$fresh/server.ts";
 import Aside from "../components/Aside.tsx";
 import Header from "../components/Header.tsx";
+
 export default function App({ Component }: PageProps) {
   return (
     <html>
