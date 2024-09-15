@@ -21,16 +21,18 @@
     "**/_fresh/*"
   ],
   "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.6.8/",
-    "preact": "https://esm.sh/preact@10.19.6",
-    "preact/": "https://esm.sh/preact@10.19.6/",
-    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
-    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
-    "tailwindcss": "npm:tailwindcss@3.4.1",
-    "tailwindcss/": "npm:/tailwindcss@3.4.1/",
+    "$fresh/": "https://deno.land/x/fresh@1.7.1/",
+    "preact": "https://esm.sh/preact@10.23.2",
+    "preact/": "https://esm.sh/preact@10.23.2/",
+    "@preact/signals": "https://esm.sh/*@preact/signals@1.3.0",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.8.0",
+    "tailwindcss": "npm:tailwindcss@3.4.11",
+    "tailwindcss/": "npm:/tailwindcss@3.4.11/",
     "@tailwindcss/": "npm:/@tailwindcss/",
-    "tailwindcss/plugin": "npm:/tailwindcss@3.4.1/plugin.js",
-    "$std/": "https://deno.land/std@0.216.0/"
+    "tailwindcss/plugin": "npm:/tailwindcss@3.4.11/plugin.js",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
+    "@stripe": "npm:@stripe/stripe-js",
+    "stripe": "npm:stripe"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
