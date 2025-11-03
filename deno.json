@@ -20,13 +20,18 @@
   ],
   "imports": {
     "@/": "./",
+    "@stripe/react-stripe-js": "npm:@stripe/react-stripe-js@^5.3.0",
+    "@stripe/stripe-js": "npm:@stripe/stripe-js@^8.2.0",
+    "daisyui": "npm:daisyui@^5.4.2",
     "fresh": "jsr:@fresh/core@^2.1.4",
     "preact": "npm:preact@^10.27.2",
     "@preact/signals": "npm:@preact/signals@^2.3.2",
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.7",
     "vite": "npm:vite@^7.1.3",
     "tailwindcss": "npm:tailwindcss@^4.1.10",
-    "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.1.12"
+    "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.1.12",
+    "components": "./components/index.ts",
+    "islands": "./islands/index.ts"
   },
   "compilerOptions": {
     "lib": [

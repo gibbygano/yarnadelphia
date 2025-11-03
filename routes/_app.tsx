@@ -1,3 +1,4 @@
+import { NavHeader } from "components";
 import { define } from "../utils.ts";
 
 export default define.page(function App({ Component }) {
@@ -8,7 +9,10 @@ export default define.page(function App({ Component }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>yarnadelphia</title>
       </head>
-      <body>
+      <body class="bg-base-200">
+        <header class="sticky">
+          <NavHeader />
+        </header>
         <Component />
       </body>
     </html>
