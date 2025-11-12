@@ -2,7 +2,7 @@ import { asset } from "fresh/runtime";
 import { CartMenu } from "islands";
 
 const NavHeader = () => {
-  const headerImg = asset("header.svg");
+  const headerImg = asset("/header.svg");
 
   return (
     <div class="navbar bg-base-100 shadow-sm">

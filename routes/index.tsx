@@ -10,7 +10,9 @@ export default define.page(function Home() {
       <div class="flex">
         <div
           class="hero min-h-screen"
-          style={`background-image: url(${asset("images/table/table-0.jpeg")})`}
+          style={`background-image: url(${
+            asset("/images/table/table-0.jpeg")
+          })`}
         >
           <div class="hero-overlay"></div>
           <div class="hero-content text-neutral-content text-center rounded-full bg-radial 
