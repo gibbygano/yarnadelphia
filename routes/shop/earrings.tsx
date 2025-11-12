@@ -7,7 +7,7 @@ const Headwear = define.page(({ state: { inventory: { earrings } } }) => {
     currency: "USD",
   });
   return (
-    <div class="min-h-screen">
+    <div class="min-h-screen flex flex-col">
       <div class="flex flex-row gap-10 m-10">
         {earrings.map(({ name, description, images, price, id }) => (
           <div key={id} class="card bg-base-100 w-64 shadow-sm">
@@ -35,7 +35,7 @@ const Headwear = define.page(({ state: { inventory: { earrings } } }) => {
           </div>
         ))}
       </div>
-      <div class="breadcrumbs text-sm m-5">
+      <div class="breadcrumbs text-sm ml-10 mt-16 justify-self-end">
         <ul>
           <li>
             <a href="/shop">Shop</a>
