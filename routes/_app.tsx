@@ -1,5 +1,6 @@
 import { NavHeader } from "components";
 import { define } from "../utils.ts";
+import { Footer } from "../components/Footer.tsx";
 
 export default define.page(function App({ Component }) {
   return (
@@ -15,6 +16,7 @@ export default define.page(function App({ Component }) {
         </header>
         <Component />
       </body>
+      <Footer />
     </html>
   );
 });

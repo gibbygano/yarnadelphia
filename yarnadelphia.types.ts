@@ -1,20 +1,14 @@
-enum InventoryCategory {
-  earrings,
-  amigurumi,
-  hats,
-  scarfs,
-  patches,
-  barrettes,
-  pins,
-  necklaces,
-  fidgets,
-}
-
 interface InventoryItem {
-  imagePaths: Array<string>;
-  name: string;
   id: string;
-  category: InventoryCategory;
+  name: string;
+  description: string;
+  images: Array<string>;
+  price: number;
 }
 
-export type { InventoryCategory, InventoryItem };
+interface Inventory {
+  earrings: Array<InventoryItem>;
+  headwear: Array<InventoryItem>;
+}
+
+export type { Inventory, InventoryItem };

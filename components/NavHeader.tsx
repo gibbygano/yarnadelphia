@@ -8,7 +8,7 @@ const NavHeader = () => {
     <div class="navbar bg-base-100 shadow-sm">
       <div class="navbar-start" />
       <div class="navbar-center">
-        <a class="btn btn-ghost h-full">
+        <a class="btn btn-ghost h-full" href="/">
           <img src={headerImg} />
         </a>
       </div>

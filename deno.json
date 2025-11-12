@@ -20,6 +20,7 @@
   ],
   "imports": {
     "@/": "./",
+    "@preact-icons/tb": "jsr:@preact-icons/tb@^1.0.14",
     "@stripe/react-stripe-js": "npm:@stripe/react-stripe-js@^5.3.0",
     "@stripe/stripe-js": "npm:@stripe/stripe-js@^8.2.0",
     "daisyui": "npm:daisyui@^5.4.2",
