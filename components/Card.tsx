@@ -1,5 +1,3 @@
-
-
 const Card = () => {
   return (
     <div class="card bg-base-100 w-96 shadow-sm">
