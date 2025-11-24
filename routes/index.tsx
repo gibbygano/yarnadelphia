@@ -1,7 +1,7 @@
 import { asset, Head } from "fresh/runtime";
-import { define } from "../utils.ts";
+import { define } from "@/utils.ts";
 
-export default define.page(function Home() {
+export default define.page(function HomePage() {
   return (
     <div class="px-4 py-8 mx-auto min-h-screen">
       <Head>

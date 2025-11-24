@@ -1,6 +1,6 @@
 import { NavHeader } from "components";
-import { define } from "../utils.ts";
-import { Footer } from "../components/Footer.tsx";
+import { define } from "@/utils.ts";
+import { Footer } from "@/components/Footer.tsx";
 
 export default define.page(function App({ Component }) {
   return (
