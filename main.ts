@@ -11,6 +11,11 @@ app.use(staticFiles());
 // Pass a shared value from a middleware
 app.use(async (ctx) => {
   ctx.state.inventory = inventory as Inventory;
+  ctx.state.currencyFormat = new Intl.NumberFormat(navigator.language, {
+    style: "currency",
+    currency: "USD",
+  });
+
   return await ctx.next();
 });
 

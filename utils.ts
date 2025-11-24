@@ -5,6 +5,7 @@ import type { Inventory } from "./yarnadelphia.types.ts";
 // data among middlewares, layouts and routes.
 export interface State {
   inventory: Inventory;
+  currencyFormat: Intl.NumberFormat;
 }
 
 export const define = createDefine<State>();
