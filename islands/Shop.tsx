@@ -9,7 +9,7 @@ const Shop = () => {
 
   return (
     <>
-      <div class="mx-20 justify-items-center">
+      <div class="mx-12 justify-items-center">
         <Search
           filterOptions={["earrings", "headwear"]}
           searchString={searchString}

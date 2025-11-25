@@ -30,7 +30,7 @@ const InventoryGrid = (
     currency: "USD",
   });
   return (
-    <div class="mx-20 mt-5 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-items-center gap-10">
+    <div class="mt-5 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-items-center gap-10">
       {(!selectedFilterOption.value ||
         selectedFilterOption.value === "earrings") &&
         earrings.filter(search).map((earring) => (
