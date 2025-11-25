@@ -1,4 +1,4 @@
-import { TbCancel, TbX } from "@preact-icons/tb";
+import { TbX } from "@preact-icons/tb";
 import type { RefObject, VNode } from "preact";
 
 interface props {
