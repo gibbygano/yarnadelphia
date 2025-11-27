@@ -17,7 +17,7 @@
     "daisyui": "npm:daisyui@^5.5.5",
     "fresh": "jsr:@fresh/core@^2.2.0",
     "preact": "npm:preact@^10.27.2",
-    "@preact/signals": "npm:@preact/signals@^2.5.1",
+    "@preact/signals": "npm:@preact/signals@^2.5.0",
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.8",
     "vite": "npm:vite@^7.2.4",
     "tailwindcss": "npm:tailwindcss@^4.1.17",
