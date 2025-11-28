@@ -23,7 +23,8 @@
     "tailwindcss": "npm:tailwindcss@^4.1.17",
     "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.1.17",
     "components": "./components/index.ts",
-    "islands": "./islands/index.ts"
+    "islands": "./islands/index.ts",
+    "context": "./islands/context/index.ts"
   },
   "compilerOptions": {
     "lib": ["dom", "dom.asynciterable", "dom.iterable", "deno.ns"],

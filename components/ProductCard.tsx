@@ -6,11 +6,17 @@ import { Modal } from "components";
 interface props {
   item: InventoryItem;
   currencyFormatter: Intl.NumberFormat;
+  addToCart: () => void;
 }
 
 const ProductCard = (
-  { item: { images, name, price, description, id }, currencyFormatter }: props,
+  {
+    item,
+    currencyFormatter,
+    addToCart,
+  }: props,
 ) => {
+  const { images, name, price, description, id } = item;
   const modalRef = useRef<HTMLDialogElement>(null);
   return (
     <>
@@ -31,7 +37,11 @@ const ProductCard = (
             {description}
           </p>
           <div class="card-actions justify-end">
-            <button type="button" class="btn btn-primary group min-w-36">
+            <button
+              onClick={addToCart}
+              type="button"
+              class="btn btn-primary group min-w-36"
+            >
               <span class="group-hover:hidden">
                 {currencyFormatter.format(price)}
               </span>

@@ -1,6 +1,7 @@
 import type { Signal } from "@preact/signals";
 import type { Inventory, InventoryItem } from "@/yarnadelphia.types.ts";
 import { ProductCard } from "components";
+import { useShoppingContext } from "./context/ShoppingContext.tsx";
 
 interface props {
   selectedFilterOption: Signal<string | undefined>;
@@ -12,6 +13,8 @@ const InventoryGrid = (
   { inventory: { earrings, headwear }, selectedFilterOption, searchString }:
     props,
 ) => {
+  const { addToCart } = useShoppingContext();
+
   const search = (item: InventoryItem) => {
     if (!searchString.value) {
       return true;
@@ -37,12 +40,17 @@ const InventoryGrid = (
           <ProductCard
             item={earring}
             currencyFormatter={currencyFormat}
+            addToCart={() => addToCart(earring)}
           />
         ))}
       {(!selectedFilterOption.value ||
         selectedFilterOption.value === "headwear") &&
         headwear.filter(search).map((head) => (
-          <ProductCard item={head} currencyFormatter={currencyFormat} />
+          <ProductCard
+            item={head}
+            currencyFormatter={currencyFormat}
+            addToCart={() => addToCart(head)}
+          />
         ))}
     </div>
   );

@@ -1,5 +1,6 @@
 import { asset } from "fresh/runtime";
 import { CartMenu } from "islands";
+import { ShoppingContextProvider } from "context";
 
 const NavHeader = () => {
   const headerImg = asset("/header.svg");
@@ -13,7 +14,9 @@ const NavHeader = () => {
         </a>
       </div>
       <div class="navbar-end">
-        <CartMenu />
+        <ShoppingContextProvider>
+          <CartMenu />
+        </ShoppingContextProvider>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { Head } from "fresh/runtime";
 import { Shop } from "islands";
 import { define } from "@/utils.ts";
+import { ShoppingContextProvider } from "context";
 
 export default define.page(function ShopPage() {
   return (
@@ -8,7 +9,9 @@ export default define.page(function ShopPage() {
       <Head>
         <title>yarnadelphia - Shop</title>
       </Head>
-      <Shop />
+      <ShoppingContextProvider>
+        <Shop />
+      </ShoppingContextProvider>
     </div>
   );
 });

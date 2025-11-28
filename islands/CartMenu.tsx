@@ -1,4 +1,11 @@
+import { useShoppingContext } from "context";
+
 const CartMenu = () => {
+  const { cartSize, subTotal } = useShoppingContext();
+  const currencyFormat = new Intl.NumberFormat(navigator.language, {
+    style: "currency",
+    currency: "USD",
+  });
   return (
     <div class="flex-none">
       <div class="dropdown dropdown-end mr-6">
@@ -22,26 +29,34 @@ const CartMenu = () => {
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-            <span className="badge badge-sm indicator-item">8</span>
+            {cartSize.value > 0 && (
+              <span className="badge badge-sm indicator-item">
+                {cartSize.value}
+              </span>
+            )}
           </div>
         </div>
-        <div
-          tabIndex={0}
-          className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
-        >
-          <div className="card-body">
-            <span className="text-lg font-bold">8 Items</span>
-            <span className="text-info">Subtotal: $999</span>
-            <div className="card-actions">
-              <button type="button" className="btn btn-primary btn-block">
-                View cart
-              </button>
+        {cartSize.value > 0 && (
+          <div
+            tabIndex={0}
+            className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
+          >
+            <div className="card-body">
+              <span className="text-lg font-bold">{cartSize.value} Items</span>
+              <span className="text-info">
+                Subtotal: {currencyFormat.format(subTotal.value)}
+              </span>
+              <div className="card-actions">
+                <button type="button" className="btn btn-primary btn-block">
+                  View cart
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default CartMenu;
+export { CartMenu };

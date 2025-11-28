@@ -1,7 +1,7 @@
 import { useSignal } from "@preact/signals";
 import { Search } from "./Search.tsx";
-import inventory from "@/inventory.ts";
 import { InventoryGrid } from "./InventoryGrid.tsx";
+import inventory from "@/inventory.ts";
 
 const Shop = () => {
   const selectedFilterOption = useSignal<string>();
@@ -25,4 +25,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export { Shop };
