@@ -1,4 +1,3 @@
-import { NavHeader } from "components";
 import { define } from "@/utils.ts";
 import { Footer } from "@/components/Footer.tsx";
 
@@ -11,9 +10,6 @@ export default define.page(function App({ Component }) {
         <title>yarnadelphia</title>
       </head>
       <body class="bg-base-200">
-        <header class="sticky">
-          <NavHeader />
-        </header>
         <Component />
       </body>
       <Footer />

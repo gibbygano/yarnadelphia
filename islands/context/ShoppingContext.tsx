@@ -1,8 +1,9 @@
-import { useSignal } from "@preact/signals";
+import { useComputed, useSignal } from "@preact/signals";
+import { Cookie } from "@harmless/ht-cookie";
 import type { ReadonlySignal } from "@preact/signals";
 import { createContext } from "preact";
 import type { VNode } from "preact";
-import { useContext } from "preact/hooks";
+import { useContext, useEffect } from "preact/hooks";
 import type { InventoryItem } from "@/yarnadelphia.types.ts";
 
 interface ShoppingContextValue {
@@ -27,43 +28,38 @@ const ShoppingContextProvider = (
   const cart = useSignal<
     Array<{ item: InventoryItem; quantity: number }> | null
   >(null);
-  const cartSize = useSignal(0);
-  const subTotal = useSignal(0.00);
-
-  const updateCartInfo = () => {
-    cartSize.value = !cart.value
-      ? 0
-      : cart.value.reduce((acc, item) => acc + item.quantity, 0);
-    subTotal.value = !cart.value ? 0.00 : cart.value.reduce(
+  const cartSize = useComputed(() =>
+    !cart.value ? 0 : cart.value.reduce((acc, item) => acc + item.quantity, 0)
+  );
+  const subTotal = useComputed(() =>
+    !cart.value ? 0.00 : cart.value.reduce(
       (acc, cartItem) => acc + (cartItem.quantity * cartItem.item.price),
       0.00,
-    );
-  };
+    )
+  );
 
   const addToCart = (itemToAdd: InventoryItem, quantity: number = 1) => {
     if (!cart.value?.find((i) => i.item.id === itemToAdd.id)) {
       cart.value = cart.value
         ? [...cart.value, { item: itemToAdd, quantity }]
         : [{ item: itemToAdd, quantity }];
+    } else {
+      cart.value = cart.value!.reduce<
+        Array<{ item: InventoryItem; quantity: number }>
+      >(
+        (acc, cartItem) => {
+          if (cartItem.item.id === itemToAdd.id) {
+            cartItem = { ...cartItem, quantity: cartItem.quantity + quantity };
+          }
+          acc.push(cartItem);
 
-      updateCartInfo();
-      return;
+          return acc;
+        },
+        [],
+      );
     }
 
-    cart.value = cart.value!.reduce<
-      Array<{ item: InventoryItem; quantity: number }>
-    >(
-      (acc, cartItem) => {
-        if (cartItem.item.id === itemToAdd.id) {
-          cartItem = { ...cartItem, quantity: cartItem.quantity + quantity };
-        }
-        acc.push(cartItem);
-
-        return acc;
-      },
-      [],
-    );
-    updateCartInfo();
+    Cookie.set("cart", JSON.stringify(cart.value));
   };
 
   const removeFromCart = (
@@ -78,32 +74,36 @@ const ShoppingContextProvider = (
 
     if (itemInCart.quantity === 1 || itemInCart.quantity < quantityToRemove) {
       cart.value = cart.value!.filter((i) => i.item.id !== itemToRemove.id);
+    } else {
+      cart.value = cart.value!.reduce<
+        Array<{ item: InventoryItem; quantity: number }>
+      >(
+        (acc, cartItem) => {
+          if (cartItem.item.id === itemToRemove.id) {
+            cartItem = {
+              ...cartItem,
+              quantity: cartItem.quantity - quantityToRemove,
+            };
+          }
+          acc.push(cartItem);
 
-      updateCartInfo();
-      return;
+          return acc;
+        },
+        [],
+      );
     }
 
-    cart.value = cart.value!.reduce<
-      Array<{ item: InventoryItem; quantity: number }>
-    >(
-      (acc, cartItem) => {
-        if (cartItem.item.id === itemToRemove.id) {
-          cartItem = {
-            ...cartItem,
-            quantity: cartItem.quantity - quantityToRemove,
-          };
-        }
-        acc.push(cartItem);
-
-        return acc;
-      },
-      [],
-    );
-
-    updateCartInfo();
+    Cookie.set("cart", JSON.stringify(cart.value));
   };
 
-  console.log(cart.value, cartSize.value, subTotal.value);
+  useEffect(() => {
+    const cartCookie = Cookie.get("cart");
+    if (cartCookie) {
+      const cartFromCookie: Array<{ item: InventoryItem; quantity: number }> =
+        JSON.parse(cartCookie);
+      cart.value = cartFromCookie;
+    }
+  }, []);
 
   return (
     <ShoppingContext.Provider

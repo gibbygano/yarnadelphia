@@ -8,6 +8,7 @@
     "jsr:@fresh/core@2": "2.2.0",
     "jsr:@fresh/core@^2.2.0": "2.2.0",
     "jsr:@fresh/plugin-vite@^1.0.8": "1.0.8",
+    "jsr:@harmless/ht-cookie@0.3": "0.3.0",
     "jsr:@preact-icons/common@^1.1.0": "1.1.0",
     "jsr:@preact-icons/tb@^1.0.14": "1.0.14",
     "jsr:@std/bytes@^1.0.6": "1.0.6",
@@ -110,6 +111,9 @@
         "npm:rollup",
         "npm:vite@^7.1.4"
       ]
+    },
+    "@harmless/ht-cookie@0.3.0": {
+      "integrity": "aaa4b72db35edff3f868590241aa2f6622dc6374889991090e84d2a485a732e2"
     },
     "@preact-icons/common@1.1.0": {
       "integrity": "ed191a9f88ee0e35539b8de3482d1f8a223b3f14f3b0dbfcba063c70ca4332fc",
@@ -1164,6 +1168,7 @@
     "dependencies": [
       "jsr:@fresh/core@^2.2.0",
       "jsr:@fresh/plugin-vite@^1.0.8",
+      "jsr:@harmless/ht-cookie@0.3",
       "jsr:@preact-icons/tb@^1.0.14",
       "npm:@preact/signals@^2.5.0",
       "npm:@stripe/react-stripe-js@^5.4.0",

@@ -11,6 +11,7 @@
   "exclude": ["**/_fresh/*"],
   "imports": {
     "@/": "./",
+    "@harmless/ht-cookie": "jsr:@harmless/ht-cookie@^0.3.0",
     "@preact-icons/tb": "jsr:@preact-icons/tb@^1.0.14",
     "@stripe/react-stripe-js": "npm:@stripe/react-stripe-js@^5.4.0",
     "@stripe/stripe-js": "npm:@stripe/stripe-js@^8.5.2",
