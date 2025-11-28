@@ -11,4 +11,15 @@ interface Inventory {
   headwear: Array<InventoryItem>;
 }
 
-export type { Inventory, InventoryItem };
+interface CartItem {
+  item: InventoryItem;
+  quantity: number;
+}
+
+interface Cart {
+  id: string;
+  date_created: Date;
+  cart_items: Array<CartItem>;
+}
+
+export type { Cart, CartItem, Inventory, InventoryItem };
