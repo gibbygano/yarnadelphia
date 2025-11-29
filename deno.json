@@ -6,8 +6,7 @@
     "build": "vite build",
     "start": "deno serve -A _fresh/server.js",
     "update": "deno run -A -r jsr:@fresh/update .",
-    "migrate": "deno run --allow-net --allow-env --allow-read --allow-write npm:node-pg-migrate up",
-    "migrate_reset": "deno run --allow-net --allow-env --allow-read --allow-write npm:node-pg-migrate down && deno run --allow-net --allow-env --allow-read --allow-write npm:node-pg-migrate up"
+    "migrate": "deno run --allow-net --allow-env --allow-read --allow-write npm:node-pg-migrate up"
   },
   "lint": {
     "rules": {
