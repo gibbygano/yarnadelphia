@@ -6,7 +6,8 @@
     "build": "vite build",
     "start": "deno serve -A _fresh/server.js",
     "update": "deno run -A -r jsr:@fresh/update .",
-    "migrate": "deno run --allow-net --allow-env --allow-read --allow-write npm:node-pg-migrate up"
+    "migrate": "deno run --allow-net --allow-env --allow-read --allow-write npm:node-pg-migrate up",
+    "migrate_reset": "deno run --allow-net --allow-env --allow-read --allow-write npm:node-pg-migrate down && deno run --allow-net --allow-env --allow-read --allow-write npm:node-pg-migrate up"
   },
   "lint": {
     "rules": {
@@ -23,9 +24,7 @@
     "@/": "./",
     "@harmless/ht-cookie": "jsr:@harmless/ht-cookie@^0.3.0",
     "@preact-icons/tb": "jsr:@preact-icons/tb@^1.0.14",
-    "@std/msgpack": "jsr:@std/msgpack@^1.0.3",
-    "@std/uuid": "jsr:@std/uuid@^1.0.9",
-    "@stripe/react-stripe-js": "npm:@stripe/react-stripe-js@^5.4.0",
+    "@std/http": "jsr:@std/http@^1.0.22",
     "@stripe/stripe-js": "npm:@stripe/stripe-js@^8.5.2",
     "daisyui": "npm:daisyui@^5.5.5",
     "fresh": "jsr:@fresh/core@^2.2.0",
@@ -69,5 +68,9 @@
     "types": [
       "vite/client"
     ]
+  },
+  "deploy": {
+    "org": "gibbygano",
+    "app": "yarnadelphia"
   }
 }

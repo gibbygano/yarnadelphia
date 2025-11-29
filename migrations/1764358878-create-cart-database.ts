@@ -1,8 +1,15 @@
-import type { MigrationBuilder } from "npm:node-pg-migrate";
+import type { MigrationBuilder } from "node-pg-migrate";
 
-exports.up = (pgm: MigrationBuilder) => {
+const up = (pgm: MigrationBuilder) => {
+  pgm.createExtension("uuid-ossp", {
+    ifNotExists: true,
+  });
   pgm.createTable("cart", {
-    id: "id",
+    id: {
+      type: "uuid",
+      primaryKey: true,
+      default: pgm.func("uuid_generate_v4()"),
+    },
     cart_items: { type: "json", notNull: true },
     date_created: {
       type: "timestamp",
@@ -12,6 +19,9 @@ exports.up = (pgm: MigrationBuilder) => {
   });
 };
 
-exports.down = (pgm: MigrationBuilder) => {
+const down = (pgm: MigrationBuilder) => {
   pgm.dropTable("cart");
+  pgm.dropExtension("uuid-ossp");
 };
+
+export { down, up };

@@ -1,29 +1,23 @@
 import { define } from "@/utils.ts";
 import { Cart } from "@/yarnadelphia.types.ts";
-import { Cookie } from "@harmless/ht-cookie";
-import { getCart } from "@/pg-helpers.tsx";
+import { createCart, getCart } from "@/pg-helpers.ts";
+import { getCookies } from "@std/http/cookie";
 
 export const handler = define.handlers<Cart>({
-  async GET(_) {
+  async GET(ctx) {
     try {
-      const cart_id = await Cookie.aGet("cart");
-      if (!cart_id) {
-        return new Response(null, {
-          status: 400,
-          statusText: "No cart_id provided.",
-        });
+      let cart: Cart | null = null;
+
+      const cart_id = getCookies(ctx.req.headers).cart;
+      if (cart_id) {
+        cart = await getCart(cart_id);
       }
 
-      const cart = await getCart(cart_id);
-
-      if (cart) {
-        return new Response(JSON.stringify(cart));
+      if (!cart_id || !cart) {
+        cart = await createCart([]);
       }
 
-      return new Response(null, {
-        status: 404,
-        statusText: `Could not find cart with id ${cart_id}.`,
-      });
+      return new Response(JSON.stringify(cart));
     } catch (error) {
       return new Response(null, {
         status: 500,
