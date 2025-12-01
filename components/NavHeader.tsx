@@ -1,5 +1,5 @@
 import { asset } from "fresh/runtime";
-import { CartMenu } from "islands";
+import { CartMenu } from "@/islands/CartMenu.tsx";
 
 const NavHeader = () => {
   const headerImg = asset("/header.svg");

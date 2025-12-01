@@ -1,4 +1,4 @@
-import { useShoppingContext } from "context";
+import { useShoppingContext } from "./context/ShoppingContext.tsx";
 
 const CartMenu = () => {
   const { cartSize, subTotal } = useShoppingContext();

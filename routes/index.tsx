@@ -1,7 +1,7 @@
 import { asset, Head } from "fresh/runtime";
 import { define } from "@/utils.ts";
-import { NavHeader } from "components";
-import { ShoppingContextProvider } from "context";
+import { NavHeader } from "@/components/NavHeader.tsx";
+import { ShoppingContextProvider } from "@/islands/context/ShoppingContext.tsx";
 
 export default define.page(function HomePage() {
   return (

@@ -1,6 +1,6 @@
 import type { Signal } from "@preact/signals";
 import type { Inventory, InventoryItem } from "@/yarnadelphia.types.ts";
-import { ProductCard } from "components";
+import { ProductCard } from "@/components/ProductCard.tsx";
 import { useShoppingContext } from "./context/ShoppingContext.tsx";
 
 interface props {

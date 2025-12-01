@@ -1,7 +1,7 @@
 import { define } from "@/utils.ts";
 import { Cart } from "@/yarnadelphia.types.ts";
 import { createCart, getCart } from "@/pg-helpers.ts";
-import { getCookies } from "@std/http/cookie";
+import { getCookies, setCookie } from "@std/http/cookie";
 
 export const handler = define.handlers<Cart>({
   async GET(ctx) {
@@ -9,15 +9,23 @@ export const handler = define.handlers<Cart>({
       let cart: Cart | null = null;
 
       const cart_id = getCookies(ctx.req.headers).cart;
-      if (cart_id) {
-        cart = await getCart(cart_id);
+      cart = await getCart(cart_id);
+
+      if (cart_id && cart) {
+        return new Response(JSON.stringify(cart));
       }
 
-      if (!cart_id || !cart) {
-        cart = await createCart([]);
-      }
+      cart = await createCart([]);
 
-      return new Response(JSON.stringify(cart));
+      const respHeaders = new Headers();
+      setCookie(respHeaders, {
+        name: "cart",
+        value: cart!.id,
+        maxAge: 86400,
+        secure: true,
+      });
+
+      return new Response(JSON.stringify(cart), { headers: respHeaders });
     } catch (error) {
       return new Response(null, {
         status: 500,

@@ -1,7 +1,7 @@
 import { asset } from "fresh/runtime";
 import type { InventoryItem } from "../yarnadelphia.types.ts";
 import { useRef } from "preact/hooks";
-import { Modal } from "components";
+import { Modal } from "@/components/Modal.tsx";
 
 interface props {
   item: InventoryItem;

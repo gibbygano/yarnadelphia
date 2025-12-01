@@ -4,7 +4,6 @@ import { createContext } from "preact";
 import type { VNode } from "preact";
 import { useContext, useEffect } from "preact/hooks";
 import type { Cart, InventoryItem } from "@/yarnadelphia.types.ts";
-import { Cookie } from "@harmless/ht-cookie";
 
 interface ShoppingContextValue {
   cart: ReadonlySignal<Cart | null>;
@@ -51,7 +50,6 @@ const ShoppingContextProvider = (
     }
 
     cart.value = await resp.json();
-    console.log(cart.value);
   };
 
   const removeFromCart = (
@@ -59,6 +57,19 @@ const ShoppingContextProvider = (
     quantityToRemove: number = 1,
   ) => {
   };
+
+  useEffect(() => {
+    const getCart = async () => {
+      const cartResp = await fetch("api/cart/get");
+      const cartJson = await cartResp.json();
+
+      if (cartJson) {
+        cart.value = cartJson;
+      }
+    };
+
+    getCart();
+  }, []);
 
   return (
     <ShoppingContext.Provider
