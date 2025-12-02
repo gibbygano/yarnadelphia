@@ -1,7 +1,8 @@
-import { define } from "@/utils.ts";
+import { define } from "@/define.ts";
 import { Footer } from "@/components/Footer.tsx";
+import { NavHeader } from "@/components/NavHeader.tsx";
 
-export default define.page(function App({ Component }) {
+export default define.page(function App({ Component, route }) {
   return (
     <html>
       <head>
@@ -10,6 +11,7 @@ export default define.page(function App({ Component }) {
         <title>yarnadelphia</title>
       </head>
       <body class="bg-base-200">
+        <NavHeader isHomepage={route === "/"} />
         <Component />
       </body>
       <Footer />

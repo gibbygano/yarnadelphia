@@ -2,18 +2,23 @@ import { asset } from "fresh/runtime";
 import type { InventoryItem } from "../yarnadelphia.types.ts";
 import { useRef } from "preact/hooks";
 import { Modal } from "@/components/Modal.tsx";
+import { TbX } from "@preact-icons/tb";
 
 interface props {
   item: InventoryItem;
   currencyFormatter: Intl.NumberFormat;
+  quantityInCart?: number;
   addToCart: () => void;
+  removeFromCart: () => void;
 }
 
 const ProductCard = (
   {
     item,
     currencyFormatter,
+    quantityInCart,
     addToCart,
+    removeFromCart,
   }: props,
 ) => {
   const { images, name, price, description, id } = item;
@@ -32,20 +37,30 @@ const ProductCard = (
           />
         </figure>
         <div class="card-body">
-          <h2 class="card-title text-nowrap">{name}</h2>
+          <h2 class="card-title">{name}</h2>
           <p>
             {description}
           </p>
           <div class="card-actions justify-end">
             <button
-              onClick={addToCart}
+              onClick={quantityInCart ? removeFromCart : addToCart}
               type="button"
               class="btn btn-primary group min-w-36"
             >
-              <span class="group-hover:hidden">
-                {currencyFormatter.format(price)}
-              </span>
-              <span class="hidden group-hover:block">Add to Cart</span>
+              {!quantityInCart
+                ? (
+                  <>
+                    <span class="group-hover:hidden">
+                      {currencyFormatter.format(price)}
+                    </span>
+                    <span class="hidden group-hover:block">Add to Cart</span>
+                  </>
+                )
+                : (
+                  <>
+                    <TbX class="text-lg align-text-bottom" />Remove
+                  </>
+                )}
             </button>
           </div>
         </div>

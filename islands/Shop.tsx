@@ -2,6 +2,7 @@ import { useSignal } from "@preact/signals";
 import { Search } from "./Search.tsx";
 import { InventoryGrid } from "./InventoryGrid.tsx";
 import inventory from "@/inventory.ts";
+import { ShoppingContextProvider } from "./context/ShoppingContext.tsx";
 
 const Shop = () => {
   const selectedFilterOption = useSignal<string>();
@@ -16,11 +17,13 @@ const Shop = () => {
           selectedFilterOption={selectedFilterOption}
         />
       </div>
-      <InventoryGrid
-        inventory={inventory}
-        selectedFilterOption={selectedFilterOption}
-        searchString={searchString}
-      />
+      <ShoppingContextProvider>
+        <InventoryGrid
+          inventory={inventory}
+          selectedFilterOption={selectedFilterOption}
+          searchString={searchString}
+        />
+      </ShoppingContextProvider>
     </>
   );
 };

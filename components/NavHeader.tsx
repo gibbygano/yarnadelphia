@@ -1,7 +1,12 @@
 import { asset } from "fresh/runtime";
 import { CartMenu } from "@/islands/CartMenu.tsx";
+import { ShoppingContextProvider } from "@/islands/context/ShoppingContext.tsx";
 
-const NavHeader = () => {
+interface props {
+  isHomepage?: boolean;
+}
+
+const NavHeader = ({ isHomepage = false }: props) => {
   const headerImg = asset("/header.svg");
 
   return (
@@ -14,7 +19,12 @@ const NavHeader = () => {
           </a>
         </div>
         <div class="navbar-end">
-          <CartMenu />
+          {!isHomepage &&
+            (
+              <ShoppingContextProvider>
+                <CartMenu />
+              </ShoppingContextProvider>
+            )}
         </div>
       </div>
     </header>

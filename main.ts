@@ -1,10 +1,7 @@
 import { App, staticFiles } from "fresh";
-import type { State } from "./utils.ts";
+import "@/src/extensions.ts";
 
-export const app = new App<State>();
+export const app = new App();
 
 app.use(staticFiles())
-  // Pass a shared value from a middleware
-  .use(async (ctx) => await ctx.next())
-  // Include file-system based routes here
   .fsRoutes();

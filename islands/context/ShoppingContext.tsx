@@ -3,12 +3,12 @@ import type { ReadonlySignal } from "@preact/signals";
 import { createContext } from "preact";
 import type { VNode } from "preact";
 import { useContext, useEffect } from "preact/hooks";
-import type { Cart, InventoryItem } from "@/yarnadelphia.types.ts";
+import type { Cart, CartItem, InventoryItem } from "@/yarnadelphia.types.ts";
 
 interface ShoppingContextValue {
   cart: ReadonlySignal<Cart | null>;
   addToCart: (item: InventoryItem, quantity?: number) => void;
-  removeFromCart: (item: InventoryItem, quantityToRemove?: number) => void;
+  removeFromCart: (item: CartItem, quantityToRemove?: number) => void;
   cartSize: ReadonlySignal<number>;
   subTotal: ReadonlySignal<number>;
 }
@@ -17,9 +17,7 @@ interface ShoppingContextProviderProps {
   children: VNode | VNode[];
 }
 
-const ShoppingContext = createContext<ShoppingContextValue | null>(
-  null,
-);
+const ShoppingContext = createContext<ShoppingContextValue | null>(null);
 
 const ShoppingContextProvider = (
   { children }: ShoppingContextProviderProps,
@@ -52,23 +50,38 @@ const ShoppingContextProvider = (
     cart.value = await resp.json();
   };
 
-  const removeFromCart = (
-    itemToRemove: InventoryItem,
-    quantityToRemove: number = 1,
+  const removeFromCart = async (
+    itemToRemove: CartItem,
+    quantityToRemove?: number,
   ) => {
+    const resp = await fetch("api/cart/remove", {
+      method: "POST",
+      body: JSON.stringify({
+        cart_item: itemToRemove,
+        quantity_to_remove: quantityToRemove,
+      }),
+    });
+
+    if (!resp.ok) {
+      throw new Error(
+        `Could not remove ${itemToRemove.item.name} from cart. Reason: ${resp.statusText}`,
+      );
+    }
+
+    cart.value = await resp.json();
   };
 
   useEffect(() => {
     const getCart = async () => {
-      const cartResp = await fetch("api/cart/get");
+      const cartResp = await fetch("api/cart");
       const cartJson = await cartResp.json();
 
-      if (cartJson) {
-        cart.value = cartJson;
-      }
+      cart.value = cartJson;
     };
 
-    getCart();
+    if (!cart.value) {
+      getCart();
+    }
   }, []);
 
   return (

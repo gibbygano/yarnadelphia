@@ -24,7 +24,7 @@
     "@harmless/ht-cookie": "jsr:@harmless/ht-cookie@^0.3.0",
     "@preact-icons/tb": "jsr:@preact-icons/tb@^1.0.14",
     "@std/http": "jsr:@std/http@^1.0.22",
-    "@stripe/stripe-js": "npm:@stripe/stripe-js@^8.5.2",
+    "@types/pg": "npm:@types/pg@^8.15.6",
     "daisyui": "npm:daisyui@^5.5.5",
     "fresh": "jsr:@fresh/core@^2.2.0",
     "node-pg-migrate": "npm:node-pg-migrate@^8.0.3",
