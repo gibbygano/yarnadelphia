@@ -1,6 +1,5 @@
 import { asset } from "fresh/runtime";
 import { CartMenu } from "@/islands/CartMenu.tsx";
-import { ShoppingContextProvider } from "@/islands/context/ShoppingContext.tsx";
 
 interface props {
   isHomepage?: boolean;
@@ -20,11 +19,7 @@ const NavHeader = ({ isHomepage = false }: props) => {
         </div>
         <div class="navbar-end">
           {!isHomepage &&
-            (
-              <ShoppingContextProvider>
-                <CartMenu />
-              </ShoppingContextProvider>
-            )}
+            <CartMenu />}
         </div>
       </div>
     </header>
