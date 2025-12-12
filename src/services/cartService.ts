@@ -1,8 +1,8 @@
-import { Cart, CartItem } from "@/yarnadelphia.types.ts";
-import { UUID } from "node:crypto";
-import { ICartRepository } from "@/src/repositories/cartRepository.ts";
+import type { Cart, CartItem } from "@/yarnadelphia.types.ts";
+import type { ICartRepository } from "@/src/repositories/cartRepository.ts";
+import type { UUID } from "node:crypto";
 
-interface ICartService {
+export interface ICartService {
   getCart: (cart_id: UUID | undefined) => Promise<Cart>;
   addItemToCart: (
     cart_id: UUID,
@@ -15,16 +15,20 @@ interface ICartService {
   ) => Promise<Cart>;
 }
 
-class CartService implements ICartService {
-  constructor(private cartRepository: ICartRepository) {}
+export class CartService implements ICartService {
+  private _cart_repository: ICartRepository;
 
-  getCart = async (cart_id: UUID | undefined) => {
+  constructor(cartRepository: ICartRepository) {
+    this._cart_repository = cartRepository;
+  }
+
+  async getCart(cart_id: UUID | undefined) {
     let cart: Cart | null = null;
 
     if (cart_id) {
-      cart = await this.cartRepository.getCart(cart_id);
+      cart = await this._cart_repository.getCart(cart_id);
     } else if (!cart_id || !cart) {
-      cart = await this.cartRepository.createCart([]);
+      cart = await this._cart_repository.createCart([]);
     }
 
     if (!cart) {
@@ -32,12 +36,12 @@ class CartService implements ICartService {
     }
 
     return cart;
-  };
+  }
 
-  addItemToCart = async (
+  async addItemToCart(
     cart_id: UUID,
     item: CartItem,
-  ) => {
+  ) {
     const cart = await this.getCart(cart_id);
     let updated_cart_items: Array<CartItem>;
 
@@ -60,14 +64,14 @@ class CartService implements ICartService {
       );
     }
 
-    return await this.cartRepository.updateCart(updated_cart_items, cart_id);
-  };
+    return await this._cart_repository.updateCart(updated_cart_items, cart_id);
+  }
 
-  removeItemFromCart = async (
+  async removeItemFromCart(
     cart_id: UUID,
     item: CartItem,
     quantityToRemove?: number,
-  ) => {
+  ) {
     const cart = await this.getCart(cart_id);
     let updated_cart_items: Array<CartItem>;
 
@@ -104,9 +108,6 @@ class CartService implements ICartService {
       );
     }
 
-    return await this.cartRepository.updateCart(updated_cart_items, cart_id);
-  };
+    return await this._cart_repository.updateCart(updated_cart_items, cart_id);
+  }
 }
-
-export type { ICartService };
-export { CartService };

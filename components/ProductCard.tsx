@@ -1,5 +1,6 @@
+import type { InventoryItem } from "@/yarnadelphia.types.ts";
+
 import { asset } from "fresh/runtime";
-import type { InventoryItem } from "../yarnadelphia.types.ts";
 import { useRef } from "preact/hooks";
 import { Modal } from "@/components/Modal.tsx";
 import { TbX } from "@preact-icons/tb";

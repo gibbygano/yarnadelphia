@@ -1,9 +1,10 @@
-import { useComputed, useSignal } from "@preact/signals";
-import type { ReadonlySignal } from "@preact/signals";
-import { createContext } from "preact";
-import type { VNode } from "preact";
-import { useContext, useEffect } from "preact/hooks";
 import type { Cart, CartItem, InventoryItem } from "@/yarnadelphia.types.ts";
+import type { ReadonlySignal } from "@preact/signals";
+import type { VNode } from "preact";
+
+import { useComputed, useSignal } from "@preact/signals";
+import { createContext } from "preact";
+import { useContext, useEffect } from "preact/hooks";
 
 interface ShoppingContextValue {
   cart: ReadonlySignal<Cart | null>;

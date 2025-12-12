@@ -1,18 +1,22 @@
-import { define } from "@/define.ts";
 import type { Cart, CartItem } from "@/yarnadelphia.types.ts";
-import { UUID } from "node:crypto";
-import { CartRepository } from "@/src/repositories/cartRepository.ts";
-import { Pool } from "pg";
+import type { UUID } from "node:crypto";
+
+import { define } from "@/define.ts";
 import { CartService } from "@/src/services/cartService.ts";
+import { CartRepository } from "@/src/repositories/cartRepository.ts";
+import { PoolProvider } from "@/intrastructure/poolProvider.ts";
 
 export const handler = define.handlers<Cart>({
   async POST(ctx) {
-    const cartService = new CartService(new CartRepository(new Pool()));
+    const cart_service = new CartService(
+      new CartRepository(PoolProvider.instance),
+    );
+
     try {
       const cart_item: CartItem = await ctx.req.json();
       const cart_id = ctx.req.getCookie("cart");
 
-      const cart = await cartService.addItemToCart(cart_id as UUID, cart_item);
+      const cart = await cart_service.addItemToCart(cart_id as UUID, cart_item);
 
       return new Response(JSON.stringify(cart)).addCookie("cart", cart!.id);
     } catch (error) {

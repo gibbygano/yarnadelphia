@@ -1,4 +1,5 @@
 import type { Signal } from "@preact/signals";
+
 import { TbCancel } from "@preact-icons/tb";
 import { useRef } from "preact/hooks";
 
