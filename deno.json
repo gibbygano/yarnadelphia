@@ -5,8 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "start": "deno serve -A _fresh/server.js",
-    "update": "deno run -A -r jsr:@fresh/update .",
-    "migrate": "deno run --allow-net --allow-env --allow-read --allow-write npm:node-pg-migrate up"
+    "update": "deno run -A -r jsr:@fresh/update ."
   },
   "lint": {
     "rules": {
@@ -23,15 +22,20 @@
     "@/": "./",
     "@harmless/ht-cookie": "jsr:@harmless/ht-cookie@^0.3.0",
     "@preact-icons/tb": "jsr:@preact-icons/tb@^1.0.14",
+    "@prisma/adapter-pg": "npm:@prisma/adapter-pg@^7.1.0",
+    "@prisma/client": "npm:@prisma/client@^7.1.0",
+    "@prisma/extension-accelerate": "npm:@prisma/extension-accelerate@^3.0.1",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.5",
     "@std/http": "jsr:@std/http@^1.0.22",
+    "@types/node": "npm:@types/node@^25.0.1",
     "@types/pg": "npm:@types/pg@^8.15.6",
     "daisyui": "npm:daisyui@^5.5.5",
+    "dotenv": "npm:dotenv@^17.2.3",
     "fresh": "jsr:@fresh/core@^2.2.0",
-    "node-pg-migrate": "npm:node-pg-migrate@^8.0.3",
-    "pg": "npm:pg@^8.16.3",
     "preact": "npm:preact@^10.27.2",
     "@preact/signals": "npm:@preact/signals@^2.5.0",
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.8",
+    "prisma": "npm:prisma@^7.1.0",
     "vite": "npm:vite@^7.2.4",
     "tailwindcss": "npm:tailwindcss@^4.1.17",
     "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.1.17"
@@ -68,5 +72,10 @@
   "deploy": {
     "org": "gibbygano",
     "app": "yarnadelphia"
-  }
+  },
+  "allowScripts": [
+    "npm:@prisma/engines@7.1.0",
+    "npm:esbuild@0.25.7",
+    "npm:prisma@7.1.0"
+  ]
 }

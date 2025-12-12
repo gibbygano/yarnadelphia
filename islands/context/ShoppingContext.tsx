@@ -27,10 +27,10 @@ const ShoppingContextProvider = (
   const cartSize = useComputed(() =>
     !cart.value
       ? 0
-      : cart.value.cart_items.reduce((acc, item) => acc + item.quantity, 0)
+      : cart.value.items.reduce((acc, item) => acc + item.quantity, 0)
   );
   const subTotal = useComputed(() =>
-    !cart.value ? 0.00 : cart.value.cart_items.reduce(
+    !cart.value ? 0.00 : cart.value.items.reduce(
       (acc, cartItem) => acc + (cartItem.quantity * cartItem.item.price),
       0.00,
     )

@@ -1,8 +1,10 @@
-import type { IPoolProvider } from "@/intrastructure/poolProvider.ts";
-import type { Pool } from "pg";
+import type {
+  AcceleratedPrismaClient,
+  IPoolProvider,
+} from "@/intrastructure/poolProvider.ts";
 
 export class BaseRepository {
-  protected pool: Pool;
+  protected pool: AcceleratedPrismaClient;
 
   protected constructor(poolProvider: IPoolProvider) {
     this.pool = poolProvider.pool;

@@ -13,3 +13,5 @@ _fresh/
 node_modules/
 vendor/
 
+
+/src/generated/prisma

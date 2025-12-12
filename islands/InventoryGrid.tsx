@@ -48,7 +48,7 @@ const InventoryGrid = (
       {(!selectedFilterOption.value ||
         selectedFilterOption.value === "earrings") &&
         earrings.filter(search).map((earring) => {
-          const item_in_cart = cart.value?.cart_items.find((i) =>
+          const item_in_cart = cart.value?.items.find((i) =>
             earring.id === i.item.id
           );
 
@@ -65,7 +65,7 @@ const InventoryGrid = (
       {(!selectedFilterOption.value ||
         selectedFilterOption.value === "headwear") &&
         headwear.filter(search).map((head) => {
-          const item_in_cart = cart.value?.cart_items.find((i) =>
+          const item_in_cart = cart.value?.items.find((i) =>
             head.id === i.item.id
           );
 

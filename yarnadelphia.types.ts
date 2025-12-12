@@ -1,5 +1,3 @@
-import type { UUID } from "node:crypto";
-
 interface InventoryItem {
   id: string;
   name: string;
@@ -19,9 +17,9 @@ interface CartItem {
 }
 
 interface Cart {
-  id: UUID;
-  date_created: Date;
-  cart_items: Array<CartItem>;
+  id: string;
+  timestamp: Date;
+  items: Array<CartItem>;
 }
 
 export type { Cart, CartItem, Inventory, InventoryItem };

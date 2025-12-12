@@ -45,10 +45,10 @@ export class CartService implements ICartService {
     const cart = await this.getCart(cart_id);
     let updated_cart_items: Array<CartItem>;
 
-    if (!cart?.cart_items.find((i) => i.item.id === item.item.id)) {
-      updated_cart_items = [...cart.cart_items, item];
+    if (!cart?.items.find((i) => i.item.id === item.item.id)) {
+      updated_cart_items = [...cart.items, item];
     } else {
-      updated_cart_items = cart.cart_items.reduce<Array<CartItem>>(
+      updated_cart_items = cart.items.reduce<Array<CartItem>>(
         (acc, cartItem) => {
           if (cartItem.item.id === item.item.id) {
             cartItem = {
@@ -75,9 +75,7 @@ export class CartService implements ICartService {
     const cart = await this.getCart(cart_id);
     let updated_cart_items: Array<CartItem>;
 
-    const item_from_cart = cart.cart_items.find((i) =>
-      i.item.id === item.item.id
-    );
+    const item_from_cart = cart.items.find((i) => i.item.id === item.item.id);
 
     if (!item_from_cart) {
       throw new Error("Item not found in cart.");
@@ -88,11 +86,9 @@ export class CartService implements ICartService {
       item_from_cart.quantity === 1 ||
       item_from_cart.quantity < quantityToRemove
     ) {
-      updated_cart_items = cart.cart_items.filter((i) =>
-        i.item.id !== item.item.id
-      );
+      updated_cart_items = cart.items.filter((i) => i.item.id !== item.item.id);
     } else {
-      updated_cart_items = cart.cart_items.reduce<Array<CartItem>>(
+      updated_cart_items = cart.items.reduce<Array<CartItem>>(
         (acc, cartItem) => {
           if (cartItem.item.id === item.item.id) {
             cartItem = {
