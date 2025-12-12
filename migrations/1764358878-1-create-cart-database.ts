@@ -10,7 +10,7 @@ const up = (pgm: MigrationBuilder) => {
       primaryKey: true,
       default: pgm.func("uuid_generate_v4()"),
     },
-    cart_items: { type: "json", notNull: true },
+    cart_items: { type: "jsonb", notNull: true },
     date_created: {
       type: "timestamp",
       notNull: true,
