@@ -67,7 +67,7 @@ const ProductCard = (
         </div>
       </div>
       <Modal modalRef={modalRef}>
-        <div class="carousel carousel-vertical rounded-box h-[600px]">
+        <div class="carousel carousel-vertical rounded-box h-150">
           {images.map((i) => (
             <div class="carousel-item h-full">
               <img class="object-scale-down" src={asset(`/images/${i}`)} />

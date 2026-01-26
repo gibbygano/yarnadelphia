@@ -1,8 +1,8 @@
 import { Head } from "fresh/runtime";
 import { Shop } from "@/islands/Shop.tsx";
 import { define } from "@/define.ts";
-import { ShoppingContextProvider } from "../islands/context/ShoppingContext.tsx";
-import { NavHeader } from "../components/NavHeader.tsx";
+import { ShoppingContextProvider } from "@/islands/context/ShoppingContext.tsx";
+import { NavHeader } from "@/components/NavHeader.tsx";
 
 export default define.page(function ShopPage() {
   return (

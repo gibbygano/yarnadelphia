@@ -14,7 +14,7 @@ const NavHeader = ({ isHomepage = false }: props) => {
         <div class="navbar-start" />
         <div class="navbar-center">
           <a class="btn btn-ghost h-full" href="/">
-            <img src={headerImg} />
+            <img width={231} height={114} src={headerImg} />
           </a>
         </div>
         <div class="navbar-end">
