@@ -8,12 +8,12 @@ const CartMenu = () => {
     currency: "USD",
   });
   return (
-    <div class="flex-none">
-      <div class="dropdown dropdown-end mr-6">
+    <div class="flex">
+      <div class="mr-6 dropdown dropdown-end">
         <div
           tabIndex={0}
           role="button"
-          class="btn btn-ghost btn-circle w:width: h-24 w-24"
+          class="w-24 h-24 btn btn-ghost btn-circle w:width:"
         >
           <div class="indicator">
             <TbShoppingCart class="text-6xl" />
@@ -27,15 +27,15 @@ const CartMenu = () => {
         {cartSize.value > 0 && (
           <div
             tabIndex={0}
-            className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
+            className="z-1 bg-base-100 shadow mt-3 w-52 card card-compact dropdown-content"
           >
             <div className="card-body">
-              <span className="text-lg font-bold">{cartSize.value} Items</span>
+              <span className="font-bold text-lg">{cartSize.value} Items</span>
               <span className="text-info">
                 Subtotal: {currencyFormat.format(subTotal.value)}
               </span>
               <div className="card-actions">
-                <button type="button" className="btn btn-primary btn-block">
+                <button type="button" className="btn-block btn btn-primary">
                   View cart
                 </button>
               </div>

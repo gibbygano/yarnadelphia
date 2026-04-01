@@ -17,10 +17,7 @@ const NavHeader = ({ isHomepage = false }: props) => {
             <img width={231} height={114} src={headerImg} />
           </a>
         </div>
-        <div class="navbar-end">
-          {!isHomepage &&
-            <CartMenu />}
-        </div>
+        <div class="navbar-end">{!isHomepage && <CartMenu />}</div>
       </div>
     </header>
   );
