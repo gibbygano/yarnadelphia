@@ -13,10 +13,10 @@ const CartMenu = () => {
         <div
           tabIndex={0}
           role="button"
-          class="w-24 h-24 btn btn-ghost btn-circle w:width:"
+          class="w-20 h-20 btn btn-ghost btn-circle w:width:"
         >
           <div class="indicator">
-            <TbShoppingCart class="text-6xl" />
+            <TbShoppingCart class="text-5xl" />
             {cartSize.value > 0 && (
               <span className="badge badge-sm indicator-item">
                 {cartSize.value}
