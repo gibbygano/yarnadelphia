@@ -4,11 +4,17 @@ interface InventoryItem {
   description: string;
   images: Array<string>;
   price: number;
+  availability: Availability;
 }
 
 interface Inventory {
   earrings: Array<InventoryItem>;
   headwear: Array<InventoryItem>;
+}
+
+interface Availability {
+  available: boolean;
+  reason?: string;
 }
 
 interface CartItem {

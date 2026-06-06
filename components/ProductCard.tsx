@@ -22,7 +22,7 @@ const ProductCard = (
     removeFromCart,
   }: props,
 ) => {
-  const { images, name, price, description, id } = item;
+  const { images, name, price, description, id, availability } = item;
   const modalRef = useRef<HTMLDialogElement>(null);
   return (
     <>
@@ -44,6 +44,7 @@ const ProductCard = (
           </p>
           <div class="card-actions justify-end">
             <button
+              disabled={!availability.available}
               onClick={quantityInCart ? removeFromCart : addToCart}
               type="button"
               class="btn btn-primary group min-w-36"
@@ -52,9 +53,15 @@ const ProductCard = (
                 ? (
                   <>
                     <span class="group-hover:hidden">
-                      {currencyFormatter.format(price)}
+                      {availability.available
+                        ? currencyFormatter.format(price)
+                        : availability.reason ?? "Unavailable"}
                     </span>
-                    <span class="hidden group-hover:block">Add to Cart</span>
+                    <span class="hidden group-hover:block">
+                      {availability.available
+                        ? "Add to Cart"
+                        : availability.reason ?? "Unavailable"}
+                    </span>
                   </>
                 )
                 : (
