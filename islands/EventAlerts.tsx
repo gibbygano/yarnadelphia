@@ -23,7 +23,7 @@ const EventAlerts = () => {
               <a
                 target="_blank"
                 class="link link-info ml-1"
-                rel="null"
+                rel="noreferrer"
                 href={e.eventLink}
               >
                 {e.name}
@@ -33,7 +33,7 @@ const EventAlerts = () => {
                   href={e.mapLink}
                   class="link link-info ml-1"
                   target="_blank"
-                  rel="null"
+                  rel="noreferrer"
                 >
                   <TbMap2 />
                 </a>
