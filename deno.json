@@ -27,18 +27,20 @@
     "@prisma/extension-accelerate": "npm:@prisma/extension-accelerate@^3.0.1",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.7",
     "@std/http": "jsr:@std/http@^1.1.1",
-    "@types/node": "npm:@types/node@^25.9.2",
+    "@types/node": "npm:@types/node@^25.9.3",
     "@types/pg": "npm:@types/pg@^8.20.0",
-    "daisyui": "npm:daisyui@^5.5.20",
+    "daisyui": "npm:daisyui@^5.5.23",
+    "date-fns": "npm:date-fns@^4.4.0",
     "dotenv": "npm:dotenv@^17.4.2",
     "fresh": "jsr:@fresh/core@^2.3.3",
+    "main.ts": "npm:main.ts@^1.0.0",
     "preact": "npm:preact@^10.29.2",
     "@preact/signals": "npm:@preact/signals@^2.9.1",
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.1.2",
     "prisma": "npm:prisma@^7.8.0",
     "vite": "npm:vite@^7.3.5",
-    "tailwindcss": "npm:tailwindcss@^4.3.0",
-    "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.3.0"
+    "tailwindcss": "npm:tailwindcss@^4.3.1",
+    "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.3.1"
   },
   "compilerOptions": {
     "lib": [

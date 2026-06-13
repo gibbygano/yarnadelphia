@@ -11,7 +11,6 @@ const inventory: Inventory = {
         "earrings/blackskulls-2.jpeg",
       ],
       price: 30.00,
-      availability: { available: false, reason: "Coming Soon" },
     },
     {
       id: "427787896",
@@ -22,7 +21,6 @@ const inventory: Inventory = {
         "earrings/bluekanzashi.jpeg",
       ],
       price: 25.00,
-      availability: { available: false, reason: "Sold Out" },
     },
   ],
   headwear: [
@@ -35,7 +33,6 @@ const inventory: Inventory = {
         "headwear/grannyhat-2.jpeg",
       ],
       price: 60.00,
-      availability: { available: false, reason: "Coming Soon" },
     },
     {
       id: "figureitoutlaterhahthath",
@@ -46,7 +43,6 @@ const inventory: Inventory = {
         "headwear/paros-2.jpeg",
       ],
       price: 30.00,
-      availability: { available: false, reason: "Sold Out" },
     },
   ],
 };

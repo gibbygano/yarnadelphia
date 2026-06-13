@@ -4,6 +4,7 @@ import { asset } from "fresh/runtime";
 import { useRef } from "preact/hooks";
 import { Modal } from "@/components/Modal.tsx";
 import { TbX } from "@preact-icons/tb";
+import { availability } from "@/availability.ts";
 
 interface props {
   item: InventoryItem;
@@ -22,7 +23,11 @@ const ProductCard = (
     removeFromCart,
   }: props,
 ) => {
-  const { images, name, price, description, id, availability } = item;
+  const { images, name, price, description, id } = item;
+  const { available, reason } = availability.find((a) =>
+    a.inventoryItemId === id
+  )!;
+
   const modalRef = useRef<HTMLDialogElement>(null);
   return (
     <>
@@ -44,7 +49,7 @@ const ProductCard = (
           </p>
           <div class="card-actions justify-end">
             <button
-              disabled={!availability.available}
+              disabled={!available}
               onClick={quantityInCart ? removeFromCart : addToCart}
               type="button"
               class="btn btn-primary group min-w-36"
@@ -53,14 +58,12 @@ const ProductCard = (
                 ? (
                   <>
                     <span class="group-hover:hidden">
-                      {availability.available
+                      {available
                         ? currencyFormatter.format(price)
-                        : availability.reason ?? "Unavailable"}
+                        : reason ?? "Unavailable"}
                     </span>
                     <span class="hidden group-hover:block">
-                      {availability.available
-                        ? "Add to Cart"
-                        : availability.reason ?? "Unavailable"}
+                      {available ? "Add to Cart" : reason ?? "Unavailable"}
                     </span>
                   </>
                 )

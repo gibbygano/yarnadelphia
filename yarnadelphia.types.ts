@@ -1,10 +1,15 @@
+interface Availability {
+  inventoryItemId: string;
+  available: boolean;
+  reason?: string;
+}
+
 interface InventoryItem {
   id: string;
   name: string;
   description: string;
   images: Array<string>;
   price: number;
-  availability: Availability;
 }
 
 interface Inventory {
@@ -12,9 +17,16 @@ interface Inventory {
   headwear: Array<InventoryItem>;
 }
 
-interface Availability {
-  available: boolean;
-  reason?: string;
+interface EventDate {
+  start: Date;
+  end: Date;
+}
+
+interface Event {
+  key: string;
+  name: string;
+  date: EventDate;
+  link: string;
 }
 
 interface CartItem {
@@ -28,4 +40,4 @@ interface Cart {
   items: Array<CartItem>;
 }
 
-export type { Cart, CartItem, Inventory, InventoryItem };
+export type { Availability, Cart, CartItem, Event, Inventory, InventoryItem };
