@@ -4,7 +4,7 @@ import { subDays } from "date-fns/subDays";
 const events: Event[] = [{
   key: "6-14-2026_pip",
   name: "Pride on Passyunk",
-  link: "https://prideonpassyunk.com",
+  eventLink: "https://prideonpassyunk.com#LBsZnGpWZNlNQmvN",
   date: {
     start: new Date("06/14/2026 1:00 PM"),
     end: new Date("06/14/2026 5:00 PM"),

@@ -26,7 +26,8 @@ interface Event {
   key: string;
   name: string;
   date: EventDate;
-  link: string;
+  eventLink: string;
+  mapLink?: string;
 }
 
 interface CartItem {
