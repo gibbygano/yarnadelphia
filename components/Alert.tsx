@@ -1,4 +1,4 @@
-import { TbCalendar, TbX } from "@preact-icons/tb";
+import { TbCalendarEvent, TbX } from "@preact-icons/tb";
 import type { ComponentChildren } from "preact";
 
 interface AlertProps {
@@ -12,7 +12,7 @@ const Alert = ({ message, onDismissClick }: AlertProps) => {
       role="alert"
       class="alert alert-vertical sm:alert-horizontal sticky top-0 z-10 rounded-none px-3 py-1 flex-nowrap"
     >
-      <TbCalendar class="hidden lg:block h-8 w-8" />
+      <TbCalendarEvent class="hidden lg:block h-8 w-8" />
       {message}
       <div>
         <button

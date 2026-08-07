@@ -9,6 +9,24 @@ const events: Event[] = [{
     start: new Date("06/14/2026 1:00 PM"),
     end: new Date("06/14/2026 5:00 PM"),
   },
+}, {
+  key: "8-7-2026-ffop",
+  name: "First Friday On Percy Street",
+  eventLink: "https://www.instagram.com/nicethingsphila/p/DbrnEackXVt/",
+  date: {
+    start: new Date("08/07/2026 4:00 PM"),
+    end: new Date("08/07/2026 8:00 PM"),
+  },
+}, {
+  key: "8-13-2026-pp",
+  name: "Passyunk Passeggiata",
+  eventLink:
+    "https://www.visiteastpassyunk.com/events/passeggiata-d7ws3-5bkap-7xs4s",
+  mapLink: "https://maps.app.goo.gl/K2uYohhhoydiuTbm9",
+  date: {
+    start: new Date("08/13/2026 5:00 PM"),
+    end: new Date("08/13/2026 8:00 PM"),
+  },
 }];
 
 const shouldAlertEvent = (event: Event) => {
