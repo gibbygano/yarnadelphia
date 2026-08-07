@@ -56,18 +56,5 @@
     "types": ["vite/client"]
   },
   "deploy": { "org": "gibbygano", "app": "yarnadelphia" },
-  "allowScripts": [
-    "npm:@prisma/engines@7.1.0",
-    "npm:@prisma/engines@7.3.0",
-    "npm:@prisma/engines@7.6.0",
-    "npm:@prisma/engines@7.8.0",
-    "npm:esbuild@0.25.7",
-    "npm:esbuild@0.27.2",
-    "npm:esbuild@0.27.4",
-    "npm:esbuild@0.27.7",
-    "npm:prisma@7.1.0",
-    "npm:prisma@7.3.0",
-    "npm:prisma@7.6.0",
-    "npm:prisma@7.8.0"
-  ]
+  "allowScripts": ["npm:@prisma/engines@7.1.0", "npm:@prisma/engines@7.3.0", "npm:@prisma/engines@7.6.0", "npm:@prisma/engines@7.8.0", "npm:@prisma/engines@7.9.1", "npm:esbuild@0.25.12", "npm:esbuild@0.25.7", "npm:esbuild@0.27.2", "npm:esbuild@0.27.4", "npm:esbuild@0.27.7", "npm:esbuild@0.28.1", "npm:prisma@7.1.0", "npm:prisma@7.3.0", "npm:prisma@7.6.0", "npm:prisma@7.8.0", "npm:prisma@7.9.1"]
 }

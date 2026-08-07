@@ -51,11 +51,11 @@ const Search = (
       </div>
       <div class="filter mt-3">
         <input
-          class="btn filter-reset btn-neutral"
+          class="btn btn-square filter-reset btn-neutral"
           type="radio"
           name="productFilters"
           onClick={() => selectedFilterOption.value = undefined}
-          aria-label="All"
+          aria-label="❌"
         />
         {filterOptions.map((o) => (
           <input
