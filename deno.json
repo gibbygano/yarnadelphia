@@ -3,7 +3,7 @@
   "tasks": {
     "check": "deno fmt --check . && deno lint . && deno check",
     "dev": "vite",
-    "build": "deno --allow-env --allow-sys --allow-read --allow-write --allow-run --allow-ffi vite build",
+    "build": "deno --allow-env --allow-sys --allow-read --allow-write --allow-run --allow-net --allow-ffi npm:prisma generate && vite build",
     "start": "deno serve -A _fresh/server.js",
     "update": "deno run -A -r jsr:@fresh/update ."
   },
