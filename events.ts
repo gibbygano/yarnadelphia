@@ -42,6 +42,15 @@ const events: Event[] = [
       end: new Date("09/12/2026 7:00 PM"),
     },
   },
+  {
+    key: "10-03-2026-apocnow",
+    name: "Artpocalypse Now",
+    eventLink: "https://ma.to/event/artpocalypse-now-art-market-03-oct-2026",
+    date: {
+      start: new Date("10/03/2026 12:00 PM"),
+      end: new Date("10/03/2026 5:00 PM"),
+    },
+  },
 ];
 
 const shouldAlertEvent = (event: Event) => {
