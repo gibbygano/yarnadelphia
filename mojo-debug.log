@@ -1,0 +1,8 @@
+[2026-10-09 13:42:41] [mojo.nvim] setup | debug=true filetype=true format=true lsp=true statusline=true terminal=true treesitter=true verbose=true
+[2026-10-09 13:42:41] [mojo.nvim] lsp_opts | root_markers=pixi.toml,pyproject.toml,.pixi,.venv
+[2026-10-09 13:42:41] [mojo.nvim] detect_miss | path=/mnt/BigChungus/Repos/yarnadelphia
+[2026-10-09 13:42:41] [mojo.nvim] dbg_dap_cmd | cmd=lldb-dap path=/mnt/BigChungus/Repos/yarnadelphia source=path
+[2026-10-09 13:45:14] [mojo.nvim] setup | debug=true filetype=true format=true lsp=true statusline=true terminal=true treesitter=true verbose=true
+[2026-10-09 13:45:14] [mojo.nvim] lsp_opts | root_markers=pixi.toml,pyproject.toml,.pixi,.venv
+[2026-10-09 13:45:14] [mojo.nvim] detect_miss | path=/mnt/BigChungus/Repos/yarnadelphia
+[2026-10-09 13:45:14] [mojo.nvim] dbg_dap_cmd | cmd=lldb-dap path=/mnt/BigChungus/Repos/yarnadelphia source=path

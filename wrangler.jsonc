@@ -1,0 +1,7 @@
+{
+  "name": "yarnadelphia",
+  "main": "_fresh/server.js",
+  "compatibility_date": "2026-06-22",
+  "build": { "command": "npx deno install & npx deno task build" },
+  "assets": { "directory": "_fresh/client" },
+}
