@@ -59,6 +59,7 @@ const events: Event[] = [
       start: new Date("10/28/2026 5:30 PM"),
       end: new Date("10/03/2026 9:30 PM"),
     },
+    mapLink: "https://maps.app.goo.gl/KGxqQkFf4zp499vT7",
   },
 ];
 
