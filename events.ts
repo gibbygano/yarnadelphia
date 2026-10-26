@@ -51,6 +51,15 @@ const events: Event[] = [
       end: new Date("10/03/2026 5:00 PM"),
     },
   },
+  {
+    key: "10-28-2026-witchpls",
+    name: '"Witch Please!" Vendor Market',
+    eventLink: "https://www.spellboundstudiophilly.com/events",
+    date: {
+      start: new Date("10/28/2026 5:30 PM"),
+      end: new Date("10/03/2026 9:30 PM"),
+    },
+  },
 ];
 
 const shouldAlertEvent = (event: Event) => {
