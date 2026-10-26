@@ -53,7 +53,7 @@ const events: Event[] = [
   },
   {
     key: "10-28-2026-witchpls",
-    name: '"Witch Please!" Vendor Market',
+    name: '"Witch, Please!" Vendor Market',
     eventLink: "https://www.spellboundstudiophilly.com/events",
     date: {
       start: new Date("10/28/2026 5:30 PM"),
